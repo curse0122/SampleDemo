@@ -9,12 +9,31 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var columnTextField: UITextField!
+    @IBOutlet weak var rowTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        columnTextField.resignFirstResponder()
+        rowTextField.resignFirstResponder()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let outputVC: OutputVC = segue.destination as! OutputVC
+        
+        outputVC.column = Int(columnTextField.text!)
+        outputVC.row = Int(rowTextField.text!)
+    }
+    
+    @IBAction func click(_ sender: Any) {
+        columnTextField.resignFirstResponder()
+        rowTextField.resignFirstResponder()
+    }
 
 }
 
